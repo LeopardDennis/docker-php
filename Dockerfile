@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     COMPOSER_HOME="/usr/local/share/composer"
     
 # Install cURL
-RUN apt-get -q update && apt-get install software-properties-common && add-apt-repository ppa:ondrej/php && apt-get update && apt-get install -yq curl bash vim git unzip supervisor && apt-get -y autoclean && apt-get -y clean
+RUN apt-get -q update && apt-get install software-properties-common && add-apt-repository ppa:ondrej/php && apt-get -q update && apt-get install -yq curl bash vim git unzip supervisor && apt-get -y autoclean && apt-get -y clean
 
 # Install PHP
 RUN apt-get install -yq php5.6-fpm php5.6-cli && \
