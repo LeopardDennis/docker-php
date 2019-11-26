@@ -35,7 +35,8 @@ RUN apt-get install -yq libyaml-dev && \
     echo "extension=yaml.so" > /etc/php/5.6/mods-available/yaml.ini && \
     phpenmod yaml
 
-RUN pecl install mcrypt && \
+RUN apt-get install -yq libmcrypt-dev && \
+    pecl install mcrypt && \
     echo "extension=mcrypt.so" > /etc/php/5.6/mods-available/mcrypt.ini && \
     phpenmod mcrypt
 
