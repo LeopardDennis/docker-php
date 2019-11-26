@@ -28,12 +28,16 @@ RUN apt-get install -yq php5.6-fpm php5.6-cli && \
     sed -i 's/^\;error_log\s*=\s*syslog\s*$/error_log = \/var\/log\/php5\/cgi.log/' /etc/php/5.6/fpm/php.ini && \
     sed -i 's/^\;error_log\s*=\s*syslog\s*$/error_log = \/var\/log\/php5\/cli.log/' /etc/php/5.6/cli/php.ini
 
-RUN apt-get install -yq php5.6-intl php5.6-gd php5.6-mysql php-redis php5.6-sqlite php5.6-curl php5.6-zip php5.6-mbstring php5.6-ldap php-dev
+RUN apt-get install -yq php5.6-intl php5.6-gd php5.6-mysql php-redis php5.6-sqlite php5.6-curl php5.6-zip php5.6-mbstring php5.6-ldap php5.6-mcrypt php-dev
 
 RUN apt-get install -yq libyaml-dev && \
     pecl install yaml-2.0.4 && \
     echo "extension=yaml.so" > /etc/php/5.6/mods-available/yaml.ini && \
     phpenmod yaml
+
+RUN pecl install mcrypt && \
+    echo "extension=mcrypt.so" > /etc/php/5.6/mods-available/mcrypt.ini && \
+    phpenmod mcrypt
 
 # Install Composer
 RUN mkdir -p /usr/local/bin && (curl -sL https://getcomposer.org/installer | php) && \
